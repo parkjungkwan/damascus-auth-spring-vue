@@ -45,7 +45,7 @@ export default {
          axios.get(`${this.context}/customers/count`)
          .then(res=>{
            
-             alert(`SUCCESS : ${res.data}`)
+             alert(`SUCCESS2 : ${res.data}`)
          })
          .catch(e=>{
              alert('ERROR')

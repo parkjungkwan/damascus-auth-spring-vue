@@ -21,6 +21,7 @@ public class CustomerService {
 
 
     public List<CustomerDTO> findCustomers() {
+        Iterable<Customer> customer = customerRepository.findAll();
         return null;
     }
 
@@ -31,7 +32,7 @@ public class CustomerService {
 
    
     public CustomerDTO findCustomerByCustomerId(String customerId) {
-        return null;
+        return customerRepository.findByCustomerId(customerId);
     }
 
  
@@ -59,7 +60,7 @@ public class CustomerService {
     public CustomerDTO login(CustomerDTO customer) {
         System.out.println("컨트롤러에서 넘어온 ID: "+customer.getCustomerId());
         System.out.println("컨트롤러에서 넘어온 PASS: "+customer.getPassword());
-        return null;
+        return customerRepository.login(customer);
     }
     
 }

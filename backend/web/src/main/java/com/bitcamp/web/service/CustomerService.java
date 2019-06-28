@@ -2,8 +2,8 @@ package com.bitcamp.web.service;
 
 import java.util.List;
 
-
 import com.bitcamp.web.domain.CustomerDTO;
+import com.bitcamp.web.entities.Customer;
 import com.bitcamp.web.repositories.CustomerRepository;
 import com.bitcamp.web.service.CustomerService;
 
@@ -15,8 +15,8 @@ public class CustomerService {
     @Autowired CustomerRepository customerRepository;
 
  
-    public void addCustomer(CustomerDTO customer) {
-        
+    public void addCustomer(Customer customer) {
+        customerRepository.save(customer);
     }
 
 

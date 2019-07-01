@@ -77,14 +77,13 @@ export default {
          axios.get(`${this.context}`)
          .then(res=>{
            
-             alert(`SUCCESS2 : ${res.data}`)
+             alert(`findAll() : ${res.data[0].customerName}`)
          })
          .catch(e=>{
              alert('ERROR')
          })
       },
        findById(){
-         alert('>>>>')
          axios.get(`${this.context}/1`)
          .then(res=>{
            

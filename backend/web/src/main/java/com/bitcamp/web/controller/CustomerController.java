@@ -1,5 +1,6 @@
 package com.bitcamp.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -31,12 +32,11 @@ public class CustomerController {
     @Autowired CustomerService customerService;
     @Autowired CustomerDTO customer;
     @Autowired ModelMapper modelMapper;
-
     @Bean
     public ModelMapper modelMapper(){
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper ();
+        return modelMapper;
     }
-
     @GetMapping("/count")
     public long	count(){
         System.out.println("===count() 진입=====");
@@ -66,9 +66,14 @@ public class CustomerController {
     }
     @GetMapping("")
     public Iterable<CustomerDTO>	findAll(){
+        System.out.println("======findAll()====");
         Iterable<Customer> entities = customerService.findAll();
-        // List<CustomerDTO> list = entities;
-        return null;
+        List<CustomerDTO> list = new ArrayList<>();
+        for (Customer s: entities){
+            CustomerDTO cust  = modelMapper.map(s, CustomerDTO.class);
+            list.add(cust);
+        }
+        return list;
     }
     /* @GetMapping("/{id}")
     public Iterable<CustomerDTO>	findAllById(Iterable<Long> ids){

@@ -1,12 +1,19 @@
 package com.bitcamp.web.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import com.bitcamp.web.common.util.Printer;
 import com.bitcamp.web.domain.CustomerDTO;
+import com.bitcamp.web.entities.Customer;
 import com.bitcamp.web.service.CustomerService;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,63 +30,72 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
     @Autowired CustomerService customerService;
     @Autowired CustomerDTO customer;
-    @Autowired Printer p;
+    @Autowired ModelMapper modelMapper;
 
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
+
+    @GetMapping("/count")
+    public long	count(){
+        System.out.println("===count() 진입=====");
+        return customerService.count();
+    }
+    /* @DeleteMapping("/{id}")
+    public void	delete(CustomerDTO dto){
+        customerService.delete(null);
+    }
+    @DeleteMapping("/{id}")
+    public void	deleteAll(){
+        customerService.deleteAll();
+    }
+    @DeleteMapping("/{id}")
+    public void	deleteAll(Iterable<CustomerDTO> dtos){
+        customerService.deleteAll(null);
+    } */
+    @DeleteMapping("/{id}")
+    public void	deleteById(Long id){
+        customerService.deleteById(id);
+    }
+    @GetMapping("/exists/{id}")
+    public boolean	existsById(@PathVariable String id){
+        System.out.println("existsById로 넘어온 아이디: "+ id);
+        Long l = Long.parseLong(id);
+        return customerService.existsById(l);
+    }
+    @GetMapping("")
+    public Iterable<CustomerDTO>	findAll(){
+        Iterable<Customer> entities = customerService.findAll();
+        // List<CustomerDTO> list = entities;
+        return null;
+    }
+    /* @GetMapping("/{id}")
+    public Iterable<CustomerDTO>	findAllById(Iterable<Long> ids){
+        Iterable<Customer> entity = customerService.findAllById(ids);
+        return null;
+    } */
+    @GetMapping("/{id}")
+    public CustomerDTO	findById(@PathVariable String id){
+        System.out.println("findById 들어온 아이디 : "+id);
+        Customer entity = customerService
+                            .findById(Long.parseLong(id))
+                            .orElseThrow(EntityNotFoundException::new);
+                            
+        System.out.println(">>>>"+entity.toString());
+        CustomerDTO c = modelMapper.map(entity, CustomerDTO.class);
+        System.out.println("조회결과: "+c.toString());
+        return c;
+    }
+    
     @PostMapping("")
-    public HashMap<String,Object> join(@RequestBody CustomerDTO param){
-        HashMap<String,Object> map = new HashMap<>();
-        p.accept("POST 진입 ");
-        map.put("result", "SUCCESS");
-        return map; 
+    public CustomerDTO save(@RequestBody CustomerDTO dto){
+        Customer entity = customerService.save(null);
+        return null;
     }
-
-    @GetMapping("/page/{pageNum}")
-    public HashMap<String, Object> list(@PathVariable String pageNum){
-       HashMap<String, Object> map = new HashMap<>();
-       
-       return map;
-    }
-
-    @GetMapping("/count")   
-    public String count() {
-        System.out.println("CustomerController count() 경로로 들어옴");
-        Long count = customerService.countAll();
-        return String.valueOf(count);
-    }
-
-    @GetMapping("/{customerId}/{password}")
-    public CustomerDTO login(@PathVariable("customerId")String id,
-                        @PathVariable("password")String pass){
-        CustomerDTO a = new 
-                CustomerDTO();
-        customer.setCustomerId(id);
-        customer.setPassword(pass);
-        return customerService.login(customer);
-    }
-
-   
-    @GetMapping("/{customerId}")
-    public CustomerDTO getCustomer(@PathVariable String customerId) {
-        HashMap<String,Object> map = new HashMap<>();
-        p.accept("Get 진입 "+customerId);
-        customer.setCustomerId("hong");
-        return customer; 
-    }
-
-    @PutMapping("/{customerId}")
-    public HashMap<String,Object> updateCustomer(@PathVariable String customerId) {
-        HashMap<String,Object> map = new HashMap<>();
-        p.accept("PUT 진입: "+customerId);
-        map.put("result","SUCCESS");
-        return map;
-    }
-
-    @DeleteMapping("/{customerId}")
-    public HashMap<String,Object> deleteCustomer(@PathVariable String customerId) {
-        HashMap<String, Object> map = new HashMap<>();
-        p.accept("DELETE 진입: "+customerId);
-        customer.setCustomerId(customerId);
-        map.put("result","SUCCESS");
-        return map;
-    }
+   /*  @PostMapping("")
+    public Iterable<CustomerDTO> saveAll(Iterable<CustomerDTO> dtos){
+        Iterable<Customer> entities =  customerService.saveAll(null);
+        return null;
+    }  */
 }

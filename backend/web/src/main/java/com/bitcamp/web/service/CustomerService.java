@@ -1,66 +1,62 @@
 package com.bitcamp.web.service;
 
-import java.util.List;
-
-import com.bitcamp.web.domain.CustomerDTO;
+import java.util.Optional;
 import com.bitcamp.web.entities.Customer;
 import com.bitcamp.web.repositories.CustomerRepository;
 import com.bitcamp.web.service.CustomerService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
-    @Autowired CustomerRepository customerRepository;
+    @Autowired 
+    CustomerRepository customerRepository;
 
- 
-    public void addCustomer(Customer customer) {
-        customerRepository.save(customer);
-    }
-
-
-    public List<CustomerDTO> findCustomers() {
-        Iterable<Customer> customer = customerRepository.findAll();
-        return null;
-    }
-
-  
-    public List<CustomerDTO> findCustomersByOption(CustomerDTO option) {
-        return null;
-    }
-
-   
-    public CustomerDTO findCustomerByCustomerId(String customerId) {
-        return customerRepository.findByCustomerId(customerId);
-    }
-
- 
-    public int updateCustomer(CustomerDTO customer) {
-        int res = 0;
-        if(res == 1){
-            System.out.println("서비스 수정성공");
-        }else{
-            System.out.println("서비스 수정실패");
-        }
-        return res;
-    }
-
-
-    public void deleteCustomer(CustomerDTO customer) {
-        
-    }
-
- 
-    public Long countAll() {
+    public long	count(){
         return customerRepository.count();
     }
+  
+    public void	delete(Customer entity){
+         customerRepository.delete(entity);
+    }
+   
+    public void	deleteAll(){
+        customerRepository.deleteAll();
+    }
+    
+    public void	deleteAll(Iterable<Customer> entities){
+        customerRepository.deleteAll(entities);
+    }
+   
+    public void	deleteById(Long id){
+        customerRepository.deleteById(id);
+    }
 
- 
-    public CustomerDTO login(CustomerDTO customer) {
-        System.out.println("컨트롤러에서 넘어온 ID: "+customer.getCustomerId());
-        System.out.println("컨트롤러에서 넘어온 PASS: "+customer.getPassword());
-        return customerRepository.login(customer);
+    public boolean	existsById(Long id){
+        return customerRepository.existsById(id);
+    }
+    
+    public Iterable<Customer>	findAll(){
+        return customerRepository.findAll();
+    }
+    
+    public Iterable<Customer>	findAllById(Iterable<Long> ids){
+        return customerRepository.findAllById(ids);
+    }
+    
+    public Optional<Customer>	findById(Long id){
+        System.out.println("서비스로 넘어온 아이디: "+id);
+        return customerRepository.findById((long)id);
+    }
+    
+    
+    public Customer save(Customer entity){
+        return customerRepository.save(entity);
+    }
+  
+    
+    public Iterable<Customer> saveAll(Iterable<Customer> entities){
+        return customerRepository.saveAll(entities);
     }
     
 }

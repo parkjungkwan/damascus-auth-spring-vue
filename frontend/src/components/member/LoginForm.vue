@@ -4,19 +4,21 @@
   <form>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email">
+      <input type="text" class="form-control" id="email" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+      <input type="text" class="form-control" id="pwd" placeholder="Enter password">
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
     </div>
-    <button class="btn btn-default" @click="get">조 회</button>
-    <button class="btn btn-default" @click="post">입 력</button>
-    <button class="btn btn-default" @click="put">수 정</button>
-    <button class="btn btn-default" @click="del">삭 제</button>
+    <button class="btn btn-default" @click="count">count</button>
+    <button class="btn btn-default" @click="deleteById">deleteById</button>
+    <button class="btn btn-default" @click="existsById">existsById</button>
+    <button class="btn btn-default" @click="findAll">findAll</button>
+    <button class="btn btn-default" @click="findById">findById</button>
+    <button class="btn btn-default" @click="save">save</button>
     
     
   </form>
@@ -32,7 +34,7 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      context: 'http://localhost:9000'
+      context: 'http://localhost:9000/customers'
     }
     
   },
@@ -41,8 +43,18 @@ export default {
     Footer
   },
   methods:{
-      get(){
-         axios.get(`${this.context}/customers/count`)
+      count(){
+         axios.get(`${this.context}/count`)
+         .then(res=>{
+           
+             alert(`count() SUCCESS : ${res.data}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
+      },
+      deleteById(){
+         axios.delete(`${this.context}/1`)
          .then(res=>{
            
              alert(`SUCCESS2 : ${res.data}`)
@@ -51,23 +63,46 @@ export default {
              alert('ERROR')
          })
       },
-      post(){
-        axios.post('/customers')
-        .then(d=>{
-          alert(`POST 연동성공: ${d.data.result}`)
-        })
+       existsById(){
+         axios.get(`${this.context}/exists/1`)
+         .then(res=>{
+             alert(`existsById() SUCCESS : ${res.data}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
+      }
+      ,
+       findAll(){
+         axios.get(`${this.context}`)
+         .then(res=>{
+           
+             alert(`SUCCESS2 : ${res.data}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
       },
-      put(){
-        axios.put('/customers/id')
-        .then(d=>{
-          alert(`PUT 연동성공: ${d.data.result}`)
-        })
+       findById(){
+         alert('>>>>')
+         axios.get(`${this.context}/1`)
+         .then(res=>{
+           
+             alert(`findById()SUCCESS : ${res.data.customerName}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
       },
-      del(){
-        axios.delete('/customers/id')
-        .then(d=>{
-          alert(`DEL 연동성공: ${d.data.result}`)
-        })
+       save(){
+         axios.post(`${this.context}`)
+         .then(res=>{
+           
+             alert(`SUCCESS2 : ${res.data}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
       }
 
 

@@ -34,7 +34,16 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      context: 'http://localhost:9000/customers'
+      context: 'http://localhost:9000/customers',
+      customerId: 'hong',
+      customerName: '홍길동',
+      password: '1234',
+      ssn: '900101-1', 
+      phone: '010-1111-2222', 
+      city: '서울 종로', 
+      address: 'YMCA', 
+      postalcode: '123456', 
+      photo: 'hong.jpg'
     }
     
   },
@@ -94,9 +103,26 @@ export default {
          })
       },
        save(){
-         axios.post(`${this.context}`)
+         let data = {
+           id: 40,
+           customerId: this.customerId,
+           customerName: this.customerName,
+           password: this.password,
+           ssn: this.ssn,
+           phone: this.phone,
+           city: this.city,
+           address: this.address,
+           postalcode: this.postalcode,
+           photo: this.photo
+         }
+         let headers = {
+           'Content-Type': 'application/json',
+           'Authorization': 'JWT fefege..'
+         }
+         axios.post(`${this.context}`, 
+                    JSON.stringify(data),
+                    {headers: headers})
          .then(res=>{
-           
              alert(`SUCCESS2 : ${res.data}`)
          })
          .catch(e=>{

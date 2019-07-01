@@ -8,11 +8,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Getter
+@Setter
 @ToString
 @Table(name = "customers")
 public class Customer implements Serializable {
@@ -33,8 +35,8 @@ public class Customer implements Serializable {
     
     @Override
     public String toString(){
-        return String.format("고객정보 No: %d\n"
-        +"ID: %s", id, customerId);
+        return "Customer :[id:"+id+",customerId:" +customerId+", customerName:"+customerName+", password:"+password+", ssn:"+ssn+
+       ", city:"+city+", address:"+address+", postalcode:"+postalcode+", photo:"+photo+"]";
     }
 
     @Builder

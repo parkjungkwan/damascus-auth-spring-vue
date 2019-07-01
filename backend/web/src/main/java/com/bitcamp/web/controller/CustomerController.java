@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.BeanUtils;;
 
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
@@ -94,9 +95,23 @@ public class CustomerController {
     }
     
     @PostMapping("")
-    public CustomerDTO save(@RequestBody CustomerDTO dto){
-        Customer entity = customerService.save(null);
-        return null;
+    public HashMap<String,String> save(@RequestBody CustomerDTO dto){
+        System.out.println("회원가입"+dto.toString());
+        HashMap<String,String> map = new HashMap<>();
+        Customer entity = new Customer();
+        entity.setAddress(dto.getAddress());
+        entity.setCity(dto.getCity());
+        entity.setCustomerId(dto.getCustomerId());
+        entity.setCustomerName(dto.getCustomerName());
+        entity.setPassword(dto.getPassword());
+        entity.setPhone(dto.getPhone());
+        entity.setPhoto(dto.getPhoto());
+        entity.setPostalcode(dto.getPostalcode());
+        entity.setSsn(dto.getSsn());
+        System.out.println("엔티티로 바뀐 정보:"+entity.toString());
+        customerService.save(entity);
+        map.put("result", "SUCCESS");
+        return map;
     }
    /*  @PostMapping("")
     public Iterable<CustomerDTO> saveAll(Iterable<CustomerDTO> dtos){

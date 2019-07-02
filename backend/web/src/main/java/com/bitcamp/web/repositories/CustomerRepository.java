@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    
+    public Customer findByCustomerIdAndPassword(String id, String password);
 }

@@ -3,12 +3,12 @@
   <Nav></Nav>
   <form>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter email">
+      <label for="email">ID:</label>
+      <input type="text" class="form-control" v-model="customerId"  id="email" placeholder="Enter email">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password">
+      <input type="text" class="form-control" v-model="customerId" id="pwd" placeholder="Enter password">
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
@@ -19,6 +19,7 @@
     <button class="btn btn-default" @click="findAll">findAll</button>
     <button class="btn btn-default" @click="findById">findById</button>
     <button class="btn btn-default" @click="save">save</button>
+    <button class="btn btn-default" @click="login">login</button>
     
     
   </form>
@@ -52,7 +53,7 @@ export default {
     Footer
   },
   methods:{
-      count(){
+      count: ()=>{
          axios.get(`${this.context}/count`)
          .then(res=>{
            
@@ -128,6 +129,9 @@ export default {
          .catch(e=>{
              alert('ERROR')
          })
+      },
+      login(){
+
       }
 
 

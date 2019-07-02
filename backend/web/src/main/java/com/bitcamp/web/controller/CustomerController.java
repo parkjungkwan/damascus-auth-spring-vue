@@ -7,9 +7,13 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.bitcamp.web.common.lambda.IConsumer;
+import com.bitcamp.web.common.lambda.IFunction;
+import com.bitcamp.web.common.lambda.ISupplier;
 import com.bitcamp.web.common.util.Printer;
 import com.bitcamp.web.domain.CustomerDTO;
 import com.bitcamp.web.entities.Customer;
+import com.bitcamp.web.repositories.CustomerRepository;
 import com.bitcamp.web.service.CustomerService;
 
 import org.modelmapper.ModelMapper;
@@ -33,6 +37,7 @@ public class CustomerController {
     @Autowired CustomerService customerService;
     @Autowired CustomerDTO customer;
     @Autowired ModelMapper modelMapper;
+    @Autowired CustomerRepository repo;
     @Bean
     public ModelMapper modelMapper(){
         ModelMapper modelMapper = new ModelMapper ();
@@ -118,4 +123,17 @@ public class CustomerController {
         Iterable<Customer> entities =  customerService.saveAll(null);
         return null;
     }  */
+
+    @GetMapping("/login")
+    public CustomerDTO login(@RequestBody CustomerDTO dto){
+        System.out.println("로그인 진입");
+        System.out.println("ID: "+dto.getCustomerId());
+        System.out.println("PW: "+dto.getPassword());
+        ISupplier fx = (()-> {
+                return repo.findByCustomerIdAndPassword(dto.getCustomerId(),
+                dto.getPassword());
+        });
+        return (CustomerDTO)fx.get();
+    }
+
 }

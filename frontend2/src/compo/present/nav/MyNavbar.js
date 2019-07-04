@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = () =>{
+const MyNavbar = () =>{
     return (
         <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>

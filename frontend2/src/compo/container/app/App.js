@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Hello from '../../present/Hello.js'
-import Navbar from '../../present/nav/Navbar.js'
+import Navbar from '../../present/nav/MyNavbar.js'
 
 
 class App extends Component{

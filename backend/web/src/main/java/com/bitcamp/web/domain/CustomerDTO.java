@@ -8,4 +8,8 @@ public class CustomerDTO {
 
     private String customerId, customerName,
     password, ssn, phone, city, address, postalcode, photo;
+
+    public void setSsn(String ssn){
+        this.ssn = ssn;
+    }
 }

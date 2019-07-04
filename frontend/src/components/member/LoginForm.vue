@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="text" class="form-control" v-model="customerId" id="pwd" placeholder="Enter password">
+      <input type="text" class="form-control" v-model="password" id="pwd" placeholder="Enter password">
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>

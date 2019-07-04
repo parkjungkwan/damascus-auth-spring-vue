@@ -124,7 +124,7 @@ public class CustomerController {
         return null;
     }  */
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public CustomerDTO login(@RequestBody CustomerDTO dto){
         System.out.println("로그인 진입");
         System.out.println("ID: "+dto.getCustomerId());

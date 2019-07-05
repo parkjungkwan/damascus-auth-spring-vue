@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {Form, Button} from 'react-bootstrap';
 
 class Join extends Component{
     constructor(props){

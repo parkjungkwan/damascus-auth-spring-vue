@@ -1,10 +1,10 @@
 import React from 'react'
 import {Navbar,Nav,NavDropdown,Form, FormControl,Button } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Login from "../containers/Login"
-import Join from "../containers/Join"
-import MyPage from "../containers/MyPage"
-import Home from "../containers/Home"
+import Login from "../containers/customer/Login.jsx"
+import Join from "../containers/customer/Join.jsx"
+import MyPage from "../containers/customer/MyPage.jsx"
+import Home from "../containers/common/Home.jsx"
 
 const MyNavbar = () =>{
     return (

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import '../assets/css/App.css';
-
-import Hello from '../components/Hello'
-import MyNavbar from '../components/MyNavbar'
-import Login from './Login';
+import '../../assets/css/App.css';
+import MyNavbar from '../../components/MyNavbar'
 
 
 class App extends Component{

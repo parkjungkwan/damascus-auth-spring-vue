@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import '../assets/css/App.css';
+import '../../assets/css/App.css';
 
-import Hello from '../components/Hello'
-import MyNavbar from '../components/MyNavbar'
-import Login from './Login';
+import MyNavbar from '../../components/MyNavbar.jsx'
 
 
 class App extends Component{
@@ -15,6 +13,7 @@ class App extends Component{
     return (
       <div className='wrapper'>
         <MyNavbar/>
+
       </div>
     )
   }

@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap';
 class MyPage extends Component{
     render(){
         return (
-            <div>
+            <div>!
                 <Table striped bordered hover variant="dark">
                 <tbody>
                     <tr>

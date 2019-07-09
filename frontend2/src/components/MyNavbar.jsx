@@ -5,12 +5,15 @@ import Login from "../containers/customer/Login.jsx"
 import Join from "../containers/customer/Join.jsx"
 import MyPage from "../containers/customer/MyPage.jsx"
 import Home from "../containers/common/Home.jsx"
+<<<<<<< HEAD
+=======
 import Hello from "../containers/customer/Hello.jsx"
 import LightSwitch from "../containers/customer/LightSwitch.jsx"
 import Timer from "../containers/common/Timer.jsx"
 import TodoApp from "../containers/common/TodoApp.jsx"
 import Clock from "../containers/common/Clock.jsx"
 
+>>>>>>> 346cc37881c2eb817dc1081985e96be97969b697
 
 const MyNavbar = () =>{
     return (

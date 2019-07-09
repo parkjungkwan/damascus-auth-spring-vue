@@ -7,7 +7,7 @@ import MyNavbar from '../../components/MyNavbar.jsx'
 class App extends Component{
 
   constructor(props){
-    super()
+    super(props)
   }
   render(){
     return (

@@ -1,6 +1,6 @@
-const todos = (state = {list:[]}, action) =>{
+const todoReducer = (state = {list:[]}, action) =>{
     switch(action.type){
-        case ADD_TODO:
+        case 'ADD_TODO':
             console.log('ADD_TODO')
         default:
             return state
@@ -8,4 +8,4 @@ const todos = (state = {list:[]}, action) =>{
     return state
 }
 
-export default todos;
+export default todoReducer;

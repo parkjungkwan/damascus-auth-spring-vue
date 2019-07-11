@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 // import logger from 'redux-logger';
 // import * as reducers from './reducers';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux'
+import { ConnectedRouter } from 'connected-react-router'
 import createBrowserHistory from 'history/createBrowserHistory';
 import createStore from './createStore'
 
@@ -24,4 +24,4 @@ ReactDOM.render(
     
     document.getElementById('root'));
 
-serviceWorker.unregister();
+//serviceWorker.unregister();

@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import User from '../components/User';
+import { connect } from 'react-redux';
+import * as actions from '../actions/User'
 
-export default function User({ user }){
-    return (
-        <div>
-            <h2>User 컴포넌트</h2>
-            <p>User: {user}</p>
-        </div>
-    )
-}
+/* 리듀서를 정의한 후에 구현할 예정 */
+const mapStateToProps = (state, ownProps)=>({
+    user: ownProps.user
+})
 
-User.propTypes = {
-    user: PropTypes.string
-}
+const mapDispatchToProps = dispatch =>({
+    onMount (user){
+        dispatch(actions.fetchUser(user))
+    },
+    onUpdate (user){
+        dispatch(actions.fetchUser(user))
+    }
+})
 
-User.defaultProps = {
-    user: 'apple'
-}
+
+export default connect(mapStateToProps, mapDispatchToProps) (User);

@@ -3,6 +3,7 @@ import {
     combineReducers,
     applyMiddleware
 } from 'redux';
+import thunk from 'redux-thunk';
 
 import logger from 'redux-logger';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
@@ -16,6 +17,7 @@ export default function createStore(history){
       }),
       applyMiddleware(
           logger,
+          thunk,
           routerMiddleware(history)
       )  
     )

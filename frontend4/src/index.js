@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import createBrowserHistory from 'history/createBrowserHistory';
+import createStore from './createStore'
 
 const history = createBrowserHistory();
 

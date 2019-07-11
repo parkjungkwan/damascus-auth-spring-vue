@@ -8,7 +8,7 @@ export default class UserCompo extends Component{
         this.props.onMount(this.props.user);
     }
     /** 컴포넌트가 props 값을 전달 받았을 때 */
-    UNSAFE_componentWillReceiveProps(nextProps){
+    componentWillReceiveProps({nextProps}){
         if(this.props.user !== nextProps.user){
             this.props.onUpdate(nextProps.user)
         }

@@ -18,12 +18,12 @@ const finishRequest = user => ({
 })
 // 사용자 추출
 export const fetchUser = user => {
-    return async =>{
+    return async() =>{
         dispatchEvent(startRequest(user))
         try{
             const response = await fetchJsonp(`${API_URL}/${user}/repos`)
-            const data = await response.json()
-            dispatchEvent(receiveDate(user, null, data));
+           const data = await response.json()
+           dispatchEvent(receiveDate(user,null,data))
         }catch{
             dispatchEvent(receiveDate(user, err))
         }

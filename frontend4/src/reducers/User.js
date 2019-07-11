@@ -14,14 +14,17 @@ const getUser = response =>{
 }
 
 const initialState = {
-    user: undefined,
+    // user 를 category 로 변경
+    category: undefined,
     repos: undefined,
     error: false
 }
 export default (state= initialState, action) => {
      switch(action.type){
+         // 요청을 시작할 때 상태 리셋
          case 'START_REQUEST':
              return {
+                 // category 를 상태에 저장
                 user: action.payload.user,
                 repos: undefined,
                 error: false

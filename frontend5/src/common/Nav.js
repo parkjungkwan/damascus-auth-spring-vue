@@ -1,62 +1,70 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Login from "../containers/customer/Login"
-import Join from "../containers/customer/Join"
-import MyPage from "../containers/customer/MyPage"
-import Home from "../containers/common/Home"
+import Login from "../customer/LoginPage"
+import Join from "../customer/JoinPage"
+import MyPage from "../customer/MyPage"
+import Home from "./Home"
 
 
 const Nav = () =>{
     return (
         <Router>
-        <Navbar bg="light" expand="lg">
-        <Navbar.Brand >BITCAMP</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-            <Nav.Link >
-                <Link to="/home">Home</Link>
-            </Nav.Link>
-            {/* <Nav.Link>스케줄러</Nav.Link> */}
-            <NavDropdown title="기본문법" id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                    <Link to="/hello">Hello</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/switch">SWITCH</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/timer">타이머</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/todoapp">스케쥴</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/clock">시 계</Link>
-                </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="회원관리" id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                    <Link to="/join">회원가입</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/login">로그인</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Link to="/mypage">마이페이지</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>
-                <Link to="/remove">회원탈퇴</Link>
-                </NavDropdown.Item>
-            </NavDropdown>
-            </Nav>
-            <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-            </Form>
-        </Navbar.Collapse>
-        </Navbar>
+        <ul class="horizontal">
+            <li><a class="active" href="javascript:void(0)">
+                    <Link to="/home">Home</Link>
+                </a>
+            </li>
+            <li><a href="javascript:void(0)">BITCAMP</a></li>
+            <li><div class="dropdown dropdown2">
+                <button class="dropbtn">기본문법</button>
+                <div class="dropdown-content">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/hello">Hello</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/timer">타이머</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/todoapp">스케쥴</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/clock">시 계</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/switch">SWITCH</Link>
+                    </a>
+                </div>
+                </div>
+            </li>
+            <li><div class="dropdown dropdown2">
+                <button class="dropbtn">회원관리</button>
+                <div class="dropdown-content">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/join">회원가입</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/login">로그인</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/mypage">마이페이지</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/clock">시 계</Link>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <Link to="/remove">회원탈퇴</Link>
+                    </a>
+                </div>
+                </div>
+            </li>
+            <li class="rightli" style="float:right"><a href="javascript:void(0)">About</a></li>
+        </ul>
         <Route path="/login" component={Login}/>
         <Route path="/join" component={Join}/>
         <Route path="/mypage" component={MyPage}/>
@@ -71,4 +79,4 @@ const Nav = () =>{
 }
 
 
-export default MyNavbar
+export default Nav

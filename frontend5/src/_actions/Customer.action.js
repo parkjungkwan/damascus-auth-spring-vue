@@ -1,6 +1,6 @@
 import { userConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './';
+import { alertActions } from '.';
 import { history } from '../_helpers';
 
 export const userActions = {
@@ -8,14 +8,14 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    remove
 };
 
-function login(username, password) {
+login = (customerId, passwd) => {
     return dispatch => {
-        dispatch(request({ username }));
+        dispatch(request({ customerId }));
 
-        userService.login(username, password)
+        userService.login(customerId, passwd)
             .then(
                 user => { 
                     dispatch(success(user));
@@ -28,17 +28,32 @@ function login(username, password) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    request = user => {
+         return {
+              type: userConstants.LOGIN_REQUEST, 
+              user 
+            } 
+        }
+    success = user => {
+         return { 
+             type: userConstants.LOGIN_SUCCESS, 
+             user 
+            } 
+        }
+    failure = error => { 
+        return { 
+            type: userConstants.LOGIN_FAILURE, 
+            error 
+            } 
+        }
 }
 
-function logout() {
+logout = () => {
     userService.logout();
     return { type: userConstants.LOGOUT };
 }
 
-function register(user) {
+join = user => {
     return dispatch => {
         dispatch(request(user));
 
@@ -56,12 +71,24 @@ function register(user) {
             );
     };
 
-    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+    request = user => { 
+        return { 
+            type: userConstants.REGISTER_REQUEST, user 
+        } 
+    }
+    success = user => { 
+        return { 
+            type: userConstants.REGISTER_SUCCESS, user 
+        } 
+    }
+    failure = error => { 
+        return { 
+            type: userConstants.REGISTER_FAILURE, error 
+        } 
+    }
 }
 
-function getAll() {
+getAll = () => {
     return dispatch => {
         dispatch(request());
 
@@ -78,7 +105,7 @@ function getAll() {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+remove = id => {
     return dispatch => {
         dispatch(request(id));
 

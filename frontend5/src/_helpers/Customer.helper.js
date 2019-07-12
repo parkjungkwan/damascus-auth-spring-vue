@@ -9,7 +9,7 @@ import logger from 'redux-logger';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import * as reducers from './reducers';
 
-export default function createStore(history){
+export const createStore = history =>{
     return reduxCreateStore(
       combineReducers({
           ...reducers,

@@ -129,11 +129,12 @@ public class CustomerController {
         System.out.println("로그인 진입");
         System.out.println("ID: "+dto.getCustomerId());
         System.out.println("PW: "+dto.getPassword());
-        ISupplier fx = (()-> {
+        /* ISupplier fx = (()-> {
                 return repo.findByCustomerIdAndPassword(dto.getCustomerId(),
                 dto.getPassword());
         });
-        return (CustomerDTO)fx.get();
+        return (CustomerDTO)fx.get(); */
+        return null;
     }
 
 }

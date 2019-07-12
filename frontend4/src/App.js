@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route, Link, Redirect} from 'react-router-dom';
 import User from './containers/User';
 import './App.css';
+import Nav from './containers/Nav';
 
 class App extends Component {
   render(){

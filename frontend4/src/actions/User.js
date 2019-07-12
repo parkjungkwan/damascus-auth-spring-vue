@@ -34,10 +34,11 @@ export const fetchUser = user => {
         try{
            const response = await fetchJsonp(`${API_URL}/${user}`)
            const data = await response.json()
-           dispatchEvent(receiveDate(user,null,data))
+          // user 를 category로 변경
+           dispatchEvent(receiveDate(category,null,data))
         }catch{
             /* dispatchEvent(receiveDate(user, err)) */
         }
-        dispatchEvent(finishRequest(user))
+        dispatchEvent(finishRequest(category))
     }
 }

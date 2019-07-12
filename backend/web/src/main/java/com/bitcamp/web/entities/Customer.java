@@ -3,7 +3,7 @@ package com.bitcamp.web.entities;
 import java.io.Serializable;
 
 import javax.persistence.*;
-
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,20 +18,33 @@ import lombok.ToString;
 @ToString
 @Table(name = "customers")
 public class Customer implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="customer_id") private String customerId; 
-    @Column(name="customer_name") private String customerName;
-    @Column(name="password") private String password;
-    @Column(name="ssn") private String ssn;
-    @Column(name="phone") private String phone;
-    @Column(name="city") private String city;
-    @Column(name="address") private String address;
-    @Column(name="postalcode") private String postalcode;
-    @Column(name="photo") private String photo;
+    @Column(name = "customer_id")
+    private String customerId;
+    @Column(name = "customer_name")
+    private String customerName;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "ssn")
+    private String ssn;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "postalcode")
+    private String postalcode;
+    @Column(name = "photo")
+    private String photo;
+    @OneToMany(cascade = CascadeType.ALL,
+                fetch=FetchType.EAGER)
+    @JoinColumn(name = "customer")
+    private List<MemberRole> roles;
     
     @Override
     public String toString(){

@@ -6,8 +6,10 @@ spring:
         password: bitcamp190705
     jpa:
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 server:
     port: 9000
-
+logging:
+  level:
+    org.springframework.security: debug 
